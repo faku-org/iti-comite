@@ -217,8 +217,43 @@ body {
 
 /* Print */
 @media print {
+  @page { margin: 2cm; }
+
   nav, footer, .no-print { display: none !important; }
-  body { background: white; color: black; }
-  .prose-campaign p, .prose-campaign li { color: #333; }
-  .prose-campaign h1, .prose-campaign h2, .prose-campaign h3 { color: #000; }
+
+  body, html { background: white !important; color: #000 !important; }
+
+  /* Override navy background on page wrapper */
+  .bg-navy, [class*="bg-navy"] { background: white !important; }
+  .min-h-screen { min-height: unset !important; }
+  .pt-24 { padding-top: 0.5rem !important; }
+  .px-6 { padding-left: 0 !important; padding-right: 0 !important; }
+  .max-w-3xl { max-width: 100% !important; }
+
+  /* Article text */
+  article h1, article h2, article h3, article h4 { color: #000 !important; }
+  article p, article li, article td, article th { color: #333 !important; }
+  article time { color: #555 !important; }
+
+  /* Prose overrides */
+  .prose-campaign p,
+  .prose-campaign li { color: #333 !important; }
+  .prose-campaign h1,
+  .prose-campaign h2,
+  .prose-campaign h3,
+  .prose-campaign h4 { color: #000 !important; }
+  .prose-campaign strong { color: #000 !important; }
+  .prose-campaign a { color: #0055aa !important; }
+  .prose-campaign th { background: #eee !important; color: #000 !important; }
+  .prose-campaign td { color: #333 !important; border-color: #ccc !important; }
+  .prose-campaign blockquote {
+    background: #f5f5f5 !important;
+    border-color: #ccc !important;
+    color: #333 !important;
+  }
+  .prose-campaign code,
+  .prose-campaign pre { background: #f0f0f0 !important; color: #333 !important; }
+
+  /* Dividers */
+  .rule { border-color: #ccc !important; }
 }

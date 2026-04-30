@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { Components } from "react-markdown";
+import { Printer } from "lucide-react";
 import { useDocument } from "../hooks/useDocuments";
 import Badge from "../components/ui/Badge";
 
@@ -134,9 +135,10 @@ export default function PolicyReader() {
               </Link>
               <button
                 onClick={() => window.print()}
-                className="text-sm text-white/40 hover:text-frost transition-colors"
+                className="inline-flex items-center gap-2 text-sm px-3 py-1.5 border border-white/20 rounded text-white/50 hover:text-white hover:border-white/40 transition-colors cursor-pointer"
               >
-                Imprimir &nearr;
+                <Printer size={14} />
+                Imprimir
               </button>
             </div>
           </article>
