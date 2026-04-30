@@ -8,7 +8,7 @@ pinned: true
 
 ## El problema
 
-Desde hace mas de dos anos, la baldosa principal del hall de entrada del ITI presenta una rotura visible que representa un riesgo de tropiezo para estudiantes, docentes y visitas. El parche provisional aplicado en 2024 se deterioro en menos de tres meses.
+Desde hace mas de dos años, la baldosa principal del hall de entrada del ITI presenta una rotura visible que representa un riesgo de tropiezo para estudiantes, docentes y visitas. El parche provisional aplicado en 2026 se deterioro en menos de tres meses.
 
 No es un problema estetico. Es un problema de seguridad.
 
@@ -16,9 +16,7 @@ No es un problema estetico. Es un problema de seguridad.
 
 Segun informacion relevada con funcionarios del instituto, el retraso se debe a:
 
-1. **Falta de presupuesto asignado** para reparaciones no urgentes.
-2. **Ausencia de un protocolo de reporte** que eleve el problema al nivel de decision correcta.
-3. **Comunicacion fragmentada** entre los responsables de mantenimiento y la direccion.
+**Falta de presupuesto asignado** para reparaciones no urgentes.
 
 ## La propuesta
 
