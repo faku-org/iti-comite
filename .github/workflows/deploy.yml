@@ -9,4 +9,6 @@ jobs:
     runs-on: [self-hosted, vps]
     steps:
       - name: Run deploy script
-        run: /var/www/iti-comite/deploy.sh
+        run: |
+          chmod +x /var/www/iti-comite/deploy.sh
+          /var/www/iti-comite/deploy.sh
