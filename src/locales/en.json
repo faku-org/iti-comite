@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "home": "Home",
+    "policies": "Policies",
+    "contact": "Contact"
+  },
+  "hero": {
+    "candidateLabel": "Candidate — ITI Student Council",
+    "tagline": "Not a promise. Someone already working.",
+    "cta": "See proposals"
+  },
+  "about": {
+    "sectionLabel": "About me",
+    "title": "A candidate with prior work",
+    "photoAlt": "Photo of Facundo Presa"
+  },
+  "policies": {
+    "sectionLabel": "Proposals",
+    "featuredTitle": "Featured proposals",
+    "pageTitle": "All proposals",
+    "pageSubtitle": "Student policy documents",
+    "filterAll": "All",
+    "pinned": "Featured",
+    "noResults": "No proposals in this category.",
+    "readMore": "Read proposal",
+    "backToList": "Back to proposals",
+    "loading": "Loading...",
+    "error": "Could not load proposals."
+  },
+  "contact": {
+    "sectionLabel": "Contact",
+    "title": "Let's talk",
+    "subtitle": "Have an idea, a complaint, or want to get involved? Reach out.",
+    "pageTitle": "Contact",
+    "pageSubtitle": "All communication channels"
+  },
+  "footer": {
+    "rights": "ITI student campaign",
+    "madeWith": "Built with real work."
+  },
+  "common": {
+    "date": "Date",
+    "category": "Category"
+  }
+}

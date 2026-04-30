@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "policies": "Politicas",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "candidateLabel": "Candidato — Consejo de Participacion ITI",
+    "tagline": "No una promesa. Alguien que ya esta trabajando.",
+    "cta": "Ver propuestas"
+  },
+  "about": {
+    "sectionLabel": "Sobre mi",
+    "title": "Un candidato con trabajo previo",
+    "photoAlt": "Foto de Facundo Presa"
+  },
+  "policies": {
+    "sectionLabel": "Propuestas",
+    "featuredTitle": "Propuestas destacadas",
+    "pageTitle": "Todas las propuestas",
+    "pageSubtitle": "Documentos de politica publica estudiantil",
+    "filterAll": "Todas",
+    "pinned": "Destacado",
+    "noResults": "No hay propuestas en esta categoria.",
+    "readMore": "Leer propuesta",
+    "backToList": "Volver a propuestas",
+    "loading": "Cargando...",
+    "error": "No se pudieron cargar las propuestas."
+  },
+  "contact": {
+    "sectionLabel": "Contacto",
+    "title": "Hablemos",
+    "subtitle": "Tenes una idea, una queja o queres sumarte? Escribime.",
+    "pageTitle": "Contacto",
+    "pageSubtitle": "Todos los canales de comunicacion"
+  },
+  "footer": {
+    "rights": "Campana estudiantil ITI",
+    "madeWith": "Hecho con trabajo real."
+  },
+  "common": {
+    "date": "Fecha",
+    "category": "Categoria"
+  }
+}
