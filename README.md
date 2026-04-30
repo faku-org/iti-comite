@@ -1,4 +1,4 @@
-# Campana ITI — Facundo Presa
+# Campaña ITI — Facundo Presa
 
 Sitio web de campana estudiantil para el Consejo de Participacion del ITI.
 
