@@ -40,22 +40,27 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "backdrop-blur-md bg-navy/90 border-b border-white/10 shadow-lg"
-            : ""
+        className={`fixed inset-x-0 top-0 z-50 transition-[padding] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+          scrolled ? "pt-3 px-3 sm:px-5 md:px-10 lg:px-20 xl:px-32" : ""
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div
+          className={`w-4xl mx-auto transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+            scrolled
+              ? "rounded-2xl bg-navy/80 backdrop-blur-xl shadow-2xl shadow-black/40 hover:-translate-y-px"
+              : ""
+          }`}
+        >
+        <div className={`max-w-6xl mx-auto px-6 flex items-center justify-between transition-[height] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${scrolled ? "h-14" : "h-16"}`}>
           {/* Logo */}
           <Link
             to="/"
             className="flex items-center gap-2 text-frost font-bold text-lg tracking-tight select-none"
           >
             <img
-              src="/assets/logo.svg"
+              src="/assets/Logo_FP.png"
               alt="FP"
-              className="h-8 w-auto"
+              className="h-8 w-auto rounded-lg"
               onError={(e) => {
                 (e.currentTarget as HTMLImageElement).style.display = "none";
                 const fallback = e.currentTarget.nextElementSibling as HTMLElement;
@@ -116,14 +121,15 @@ export default function Navbar() {
             </button>
           </div>
         </div>
+        </div>
       </nav>
 
       {/* Mobile overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-navy/98 backdrop-blur-sm flex flex-col items-center justify-center gap-10 transition-all duration-300 md:hidden ${
+        className={`fixed inset-0 z-40 bg-navy/98 backdrop-blur-sm flex flex-col items-center justify-center gap-10 transition-all duration-300 ease-out transform md:hidden ${
           menuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+            ? "opacity-100 pointer-events-auto scale-100"
+            : "opacity-0 pointer-events-none scale-95"
         }`}
       >
         {links.map((link) => (
