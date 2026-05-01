@@ -11,7 +11,7 @@ export const siteConfig = {
       en: "ITI student focused on real, concrete change. My candidacy does not start with a promise but with prior work: documented proposals, conversations with classmates, and a commitment to improving everyone's experience at the institute.",
     },
     logoPath: "/assets/Logo_FP.png",
-    avatarPath: "/assets/yo_traje.png",
+    avatarPath: "/assets/yo.jpg",
   },
   socials: [
     {
