@@ -10,7 +10,7 @@ export const siteConfig = {
       es: "Estudiante del ITI con foco en cambios reales y concretos. Mi candidatura no nace de una promesa sino de trabajo previo: propuestas documentadas, conversaciones con compañeros y compromiso con mejorar la experiencia de todos en el instituto.",
       en: "ITI student focused on real, concrete change. My candidacy does not start with a promise but with prior work: documented proposals, conversations with classmates, and a commitment to improving everyone's experience at the institute.",
     },
-    logoPath: "/assets/logo.svg",
+    logoPath: "/assets/Logo_FP.png",
     avatarPath: "/assets/yo_traje.png",
   },
   socials: [

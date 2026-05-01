@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
@@ -52,6 +53,19 @@ export default function PolicyReader() {
   const { t, i18n } = useTranslation();
   const { content, meta, loading, error } = useDocument(slug ?? "");
 
+  const headings = useMemo(() => {
+    if (!content) return [];
+    return content
+      .split("\n")
+      .filter((line) => /^#{1,3} /.test(line))
+      .map((line) => {
+        const match = line.match(/^(#{1,3}) (.+)/);
+        if (!match) return null;
+        return { level: match[1].length, text: match[2].trim() };
+      })
+      .filter((h): h is { level: number; text: string } => h !== null);
+  }, [content]);
+
   return (
     <div className="page-enter min-h-screen bg-navy pt-24 pb-20 px-6">
       <div className="max-w-3xl mx-auto">
@@ -85,6 +99,47 @@ export default function PolicyReader() {
         )}
 
         {!loading && !error && meta && content && (
+          <>
+            {/* Running header - print only, position:fixed repeats on every page */}
+            <div className="print-only print-running-header">
+              <span>Facundo Presa — Candidato a Comité de Participación</span>
+              <span className="print-running-header-title">{meta.title}</span>
+            </div>
+
+            {/* Running footer - print only */}
+            <div className="print-only print-running-footer">
+              <span className="print-footer-slogan">Construyendo futuro</span>
+              <span>{formatDate(meta.date, i18n.language)}</span>
+            </div>
+
+            {/* Cover page - print only, occupies 2/3 of page 1 */}
+            <div className="print-only print-cover">
+              <div className="print-cover-category">{meta.category}</div>
+              <h1 className="print-cover-title">{meta.title}</h1>
+              <div className="print-cover-divider" />
+              <div className="print-cover-meta">
+                <div>
+                  <div className="print-cover-author">Facundo Presa</div>
+                  <div className="print-cover-role">Candidato a Comité de Participación</div>
+                </div>
+                <time className="print-cover-date">
+                  {formatDate(meta.date, i18n.language)}
+                </time>
+              </div>
+            </div>
+
+            {/* Table of contents - print only, page 2 */}
+            {headings.length > 0 && (
+              <div className="print-only print-toc">
+                <div className="print-toc-title">Índice</div>
+                {headings.map((h, i) => (
+                  <div key={i} className={`print-toc-entry level-${h.level}`}>
+                    {h.text}
+                  </div>
+                ))}
+              </div>
+            )}
+
           <article>
             {/* Document header */}
             <div className="mb-8">
@@ -142,6 +197,7 @@ export default function PolicyReader() {
               </button>
             </div>
           </article>
+          </>
         )}
       </div>
     </div>

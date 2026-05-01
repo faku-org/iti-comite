@@ -6,6 +6,8 @@
   --color-mid: #4988C4;
   --color-frost: #BDE8F5;
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "DM Serif Display", ui-serif, Georgia, serif;
+  --font-mono: "DM Mono", ui-monospace, "Cascadia Code", monospace;
 }
 
 *, *::before, *::after {
@@ -215,45 +217,362 @@ body {
 .prose-campaign a:hover { color: #ffffff; }
 .prose-campaign strong { color: rgba(255,255,255,0.9); font-weight: 600; }
 
-/* Print */
-@media print {
-  @page { margin: 2cm; }
+/* Print-only utility (hidden on screen, shown in @media print) */
+.print-only { display: none; }
 
+/* ─── Document Viewer ───────────────────────────────────────────────────── */
+
+/* Measurement helpers (same font metrics as printed content) */
+.dv-measure-h1 { font-family: "DM Serif Display", serif; font-size: 22pt; font-weight: 400; line-height: 1.2; color: #0F2854; margin: 0 0 0.5rem; }
+.dv-measure-h2 { font-family: "DM Serif Display", serif; font-size: 16pt; font-weight: 400; line-height: 1.25; color: #1C4D8D; margin: 1.25rem 0 0.5rem; }
+.dv-measure-h3 { font-family: "DM Sans", sans-serif; font-size: 13pt; font-weight: 600; line-height: 1.3; color: #4988C4; margin: 1rem 0 0.4rem; }
+.dv-measure-h4 { font-family: "DM Sans", sans-serif; font-size: 10pt; font-weight: 600; line-height: 1.35; color: #4988C4; text-transform: uppercase; letter-spacing: 0.08em; margin: 0.85rem 0 0.35rem; }
+.dv-measure-p  { font-family: "DM Sans", sans-serif; font-size: 11pt; line-height: 1.65; color: #1a1a2e; margin: 0 0 0.9rem; }
+.dv-measure-list { font-family: "DM Sans", sans-serif; font-size: 11pt; line-height: 1.65; color: #1a1a2e; margin: 0 0 0.9rem; padding-left: 1.4rem; }
+.dv-measure-pre { font-family: "DM Mono", monospace; font-size: 9pt; line-height: 1.5; background: #EDF5FD; padding: 0.5rem 0.75rem; margin: 0 0 0.9rem; }
+.dv-measure-hr  { border: none; border-top: 1px solid #BDE8F5; margin: 1rem 0; }
+
+/* Page content typography */
+.dv-h1 { font-family: "DM Serif Display", serif; font-size: 22pt; font-weight: 400; line-height: 1.2; color: #0F2854; margin: 0 0 0.5rem; }
+.dv-h2 { font-family: "DM Serif Display", serif; font-size: 16pt; font-weight: 400; line-height: 1.25; color: #1C4D8D; border-bottom: 0.5px solid #BDE8F5; padding-bottom: 3pt; margin: 1.25rem 0 0.5rem; }
+.dv-h3 { font-family: "DM Sans", sans-serif; font-size: 13pt; font-weight: 600; line-height: 1.3; color: #4988C4; margin: 1rem 0 0.4rem; }
+.dv-h4 { font-family: "DM Sans", sans-serif; font-size: 10pt; font-weight: 600; line-height: 1.35; color: #4988C4; text-transform: uppercase; letter-spacing: 0.08em; margin: 0.85rem 0 0.35rem; }
+.dv-p  { font-family: "DM Sans", sans-serif; font-size: 11pt; line-height: 1.65; color: #1a1a2e; margin: 0 0 0.9rem; }
+.dv-p strong { color: #0F2854; font-weight: 700; }
+.dv-p em { font-style: italic; }
+.dv-p code { font-family: "DM Mono", monospace; font-size: 9pt; background: #EDF5FD; color: #0F2854; border: 0.5px solid #BDE8F5; border-radius: 2px; padding: 1px 4px; }
+.dv-blockquote { font-family: "DM Serif Display", serif; font-style: italic; font-size: 12pt; color: #1C4D8D; border-left: 2.5px solid #4988C4; background: #EDF5FD; padding: 0.4rem 0.7rem; margin: 0.5rem 0 0.9rem; }
+.dv-list { font-family: "DM Sans", sans-serif; font-size: 11pt; line-height: 1.65; color: #1a1a2e; margin: 0 0 0.9rem; padding-left: 1.4rem; }
+.dv-list ul { list-style: disc; padding-left: 1.2rem; }
+.dv-list ol { list-style: decimal; padding-left: 1.2rem; }
+.dv-list li { margin-bottom: 0.25rem; }
+.dv-pre { font-family: "DM Mono", monospace; font-size: 9pt; line-height: 1.5; background: #EDF5FD; border-left: 3px solid #4988C4; color: #0F2854; padding: 0.4rem 0.65rem; margin: 0 0 0.9rem; white-space: pre-wrap; word-break: break-word; }
+.dv-hr  { border: none; border-top: 0.5px solid #BDE8F5; margin: 0.9rem 0; }
+.dv-image { margin: 0 0 0.9rem; text-align: center; }
+
+/* Print: hide viewer chrome, show only pages */
+@media print {
+  .dv-topbar,
+  .no-print { display: none !important; }
+
+  .dv-viewer {
+    background: white !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+
+  .dv-page {
+    box-shadow: none !important;
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+}
+
+/* ─── Print ─────────────────────────────────────────────────────────────── */
+@media print {
+  @page {
+    size: A4;
+    margin: 1.5cm 2cm;
+  }
+
+  /* Utilities */
+  .print-only { display: block !important; }
   nav, footer, .no-print { display: none !important; }
 
-  body, html { background: white !important; color: #000 !important; }
-
-  /* Override navy background on page wrapper */
-  .bg-navy, [class*="bg-navy"] { background: white !important; }
+  /* Reset screen layout */
+  body, html { background: white !important; color: #1a1a2e !important; }
+  .bg-navy, [class*="bg-navy"], .page-enter { background: white !important; }
   .min-h-screen { min-height: unset !important; }
-  .pt-24 { padding-top: 0.5rem !important; }
+  .pt-24 { padding-top: 0 !important; }
+  .pb-20 { padding-bottom: 0 !important; }
   .px-6 { padding-left: 0 !important; padding-right: 0 !important; }
-  .max-w-3xl { max-width: 100% !important; }
+  .max-w-3xl { max-width: 100% !important; padding: 0 !important; }
 
-  /* Article text */
-  article h1, article h2, article h3, article h4 { color: #000 !important; }
-  article p, article li, article td, article th { color: #333 !important; }
-  article time { color: #555 !important; }
-
-  /* Prose overrides */
-  .prose-campaign p,
-  .prose-campaign li { color: #333 !important; }
-  .prose-campaign h1,
-  .prose-campaign h2,
-  .prose-campaign h3,
-  .prose-campaign h4 { color: #000 !important; }
-  .prose-campaign strong { color: #000 !important; }
-  .prose-campaign a { color: #0055aa !important; }
-  .prose-campaign th { background: #eee !important; color: #000 !important; }
-  .prose-campaign td { color: #333 !important; border-color: #ccc !important; }
-  .prose-campaign blockquote {
-    background: #f5f5f5 !important;
-    border-color: #ccc !important;
-    color: #333 !important;
+  /* ── Running header (position: fixed repeats on every page in Chrome) ── */
+  .print-running-header {
+    display: flex !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: "DM Sans", sans-serif;
+    font-size: 7.5pt;
+    color: #4988C4;
+    border-bottom: 0.5pt solid #BDE8F5;
+    padding-bottom: 4pt;
+    letter-spacing: 0.01em;
   }
-  .prose-campaign code,
-  .prose-campaign pre { background: #f0f0f0 !important; color: #333 !important; }
 
-  /* Dividers */
-  .rule { border-color: #ccc !important; }
+  .print-running-header-title {
+    font-weight: 600;
+    color: #1C4D8D;
+    font-size: 7pt;
+    max-width: 55%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* ── Running footer ───────────────────────────────────────────────────── */
+  .print-running-footer {
+    display: flex !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: "DM Sans", sans-serif;
+    font-size: 7.5pt;
+    color: #4988C4;
+    border-top: 0.5pt solid #BDE8F5;
+    padding-top: 4pt;
+  }
+
+  .print-footer-slogan {
+    font-family: "DM Serif Display", serif;
+    font-style: italic;
+    font-size: 8.5pt;
+    color: #1C4D8D;
+  }
+
+  /* ── Cover page (2/3 of page 1) ───────────────────────────────────────── */
+  .print-cover {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: #0F2854 !important;
+    min-height: 17cm;
+    padding: 2cm 2.5cm 1.8cm;
+    margin: 0 -2cm;
+    break-after: page;
+    page-break-after: always;
+    color: white;
+  }
+
+  .print-cover-category {
+    font-family: "DM Sans", sans-serif;
+    font-size: 8pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #BDE8F5;
+    margin-bottom: 1.2cm;
+  }
+
+  .print-cover-title {
+    font-family: "DM Serif Display", serif;
+    font-size: 30pt;
+    font-weight: 400;
+    line-height: 1.15;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.9cm;
+    max-width: 85%;
+  }
+
+  .print-cover-divider {
+    height: 1pt;
+    background: rgba(189, 232, 245, 0.3);
+    margin-bottom: 0.6cm;
+  }
+
+  .print-cover-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: "DM Sans", sans-serif;
+  }
+
+  .print-cover-author {
+    font-size: 10pt;
+    font-weight: 600;
+    color: #BDE8F5;
+    margin-bottom: 2pt;
+  }
+
+  .print-cover-role {
+    font-size: 8pt;
+    color: rgba(189, 232, 245, 0.55);
+  }
+
+  .print-cover-date {
+    font-size: 9pt;
+    color: rgba(189, 232, 245, 0.55);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── Table of contents ────────────────────────────────────────────────── */
+  .print-toc {
+    display: block !important;
+    break-after: page;
+    page-break-after: always;
+    padding-top: 0.3cm;
+  }
+
+  .print-toc-title {
+    font-family: "DM Serif Display", serif;
+    font-size: 22pt;
+    font-weight: 400;
+    color: #0F2854;
+    margin-bottom: 0.7cm;
+    padding-bottom: 5pt;
+    border-bottom: 0.75pt solid #BDE8F5;
+  }
+
+  .print-toc-entry {
+    font-family: "DM Sans", sans-serif;
+    display: block;
+    padding: 3.5pt 0;
+    line-height: 1.4;
+    color: #1a1a2e;
+  }
+
+  .print-toc-entry.level-1 {
+    font-weight: 600;
+    font-size: 11pt;
+    color: #0F2854;
+    margin-top: 5pt;
+  }
+
+  .print-toc-entry.level-2 {
+    padding-left: 1.2cm;
+    font-size: 10.5pt;
+    color: #1C4D8D;
+  }
+
+  .print-toc-entry.level-3 {
+    padding-left: 2.3cm;
+    font-size: 10pt;
+    color: #4988C4;
+  }
+
+  /* ── Article header (title, date shown on content page) ──────────────── */
+  article > div > h1 {
+    font-family: "DM Serif Display", serif !important;
+    font-size: 26pt !important;
+    font-weight: 400 !important;
+    color: #0F2854 !important;
+    letter-spacing: -0.025em !important;
+    line-height: 1.2 !important;
+  }
+
+  article time { color: #4988C4 !important; }
+
+  /* ── Prose typography ─────────────────────────────────────────────────── */
+  .prose-campaign h1 {
+    font-family: "DM Serif Display", serif !important;
+    font-size: 22pt !important;
+    font-weight: 400 !important;
+    color: #0F2854 !important;
+    letter-spacing: -0.02em !important;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .prose-campaign h2 {
+    font-family: "DM Serif Display", serif !important;
+    font-size: 16pt !important;
+    font-weight: 400 !important;
+    color: #1C4D8D !important;
+    border-bottom: 0.5pt solid #BDE8F5 !important;
+    padding-bottom: 4pt !important;
+    letter-spacing: -0.01em !important;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .prose-campaign h3 {
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 13pt !important;
+    font-weight: 600 !important;
+    color: #4988C4 !important;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .prose-campaign h4 {
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 10pt !important;
+    font-weight: 600 !important;
+    color: #4988C4 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .prose-campaign p,
+  .prose-campaign li {
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 11pt !important;
+    color: #1a1a2e !important;
+    line-height: 1.65 !important;
+  }
+
+  .prose-campaign strong { color: #0F2854 !important; font-weight: 700 !important; }
+  .prose-campaign a { color: #1C4D8D !important; text-decoration: underline !important; }
+
+  .prose-campaign blockquote {
+    font-family: "DM Serif Display", serif !important;
+    font-style: italic !important;
+    font-size: 12pt !important;
+    color: #1C4D8D !important;
+    border-left: 2.5pt solid #4988C4 !important;
+    background: #EDF5FD !important;
+    padding: 0.45cm 0.75cm !important;
+    margin: 0.5cm 0 !important;
+  }
+
+  .prose-campaign code {
+    font-family: "DM Mono", monospace !important;
+    font-size: 9pt !important;
+    background: #EDF5FD !important;
+    color: #0F2854 !important;
+    border: 0.5pt solid #BDE8F5 !important;
+  }
+
+  .prose-campaign pre {
+    font-family: "DM Mono", monospace !important;
+    font-size: 9pt !important;
+    background: #EDF5FD !important;
+    border: none !important;
+    border-left: 3pt solid #4988C4 !important;
+    color: #0F2854 !important;
+    padding: 0.4cm 0.65cm !important;
+  }
+
+  .prose-campaign pre code {
+    background: transparent !important;
+    border: none !important;
+    color: inherit !important;
+  }
+
+  .prose-campaign th {
+    font-family: "DM Sans", sans-serif !important;
+    background: #0F2854 !important;
+    color: #BDE8F5 !important;
+    font-size: 8pt !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+  }
+
+  .prose-campaign td {
+    font-family: "DM Sans", sans-serif !important;
+    color: #1a1a2e !important;
+    font-size: 10pt !important;
+    border-bottom: 0.5pt solid #BDE8F5 !important;
+  }
+
+  .prose-campaign tr:last-child td { border-bottom: none !important; }
+
+  /* ── Dividers ─────────────────────────────────────────────────────────── */
+  .rule {
+    background: linear-gradient(90deg, transparent, #BDE8F5 30%, #BDE8F5 70%, transparent) !important;
+    opacity: 0.45 !important;
+    height: 1pt !important;
+  }
 }

@@ -38,8 +38,7 @@ export function useDocument(slug: string) {
         const docMeta = docs.find((d) => d.slug === slug);
         if (!docMeta) throw new Error("Document not found");
         setMeta(docMeta);
-        // Strip YAML frontmatter
-        const stripped = rawContent.replace(/^---[\s\S]*?---\n/, "");
+        const stripped = rawContent.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, "");
         setContent(stripped);
       })
       .catch((e: Error) => setError(e.message))
