@@ -96,7 +96,7 @@ export default function Navbar() {
           <div className="flex items-center gap-5">
             <button
               onClick={toggleLang}
-              className="text-xs font-semibold tracking-widest text-white/50 hover:text-frost uppercase transition-colors"
+              className="cursor-pointer text-xs font-semibold tracking-widest text-white/50 hover:text-frost uppercase transition-colors"
               aria-label="Toggle language"
             >
               {i18n.language === "es" ? "ES" : "EN"}

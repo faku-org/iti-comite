@@ -13,7 +13,7 @@ export default function Hero() {
     <section className="grain-overlay relative min-h-screen bg-navy flex flex-col items-center justify-center px-6 overflow-hidden">
       {/* Background gradient accent */}
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-100 rounded-full pointer-events-none"
         style={{
           background:
             "radial-gradient(ellipse at center, rgba(73,136,196,0.12) 0%, transparent 70%)",
@@ -38,7 +38,7 @@ export default function Hero() {
 
         {/* Candidate name — the typographic anchor */}
         <h1
-          className="font-sans text-white leading-none tracking-tight mb-6"
+          className="font-sans text-white leading-none tracking-tight mb-6 select-none"
           style={{
             fontSize: "clamp(3.5rem, 10vw, 8rem)",
             fontWeight: 800,
