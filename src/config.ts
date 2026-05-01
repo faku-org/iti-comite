@@ -27,7 +27,7 @@ export const siteConfig = {
     {
       platform: "Mail",
       url: "mailto:hola@faku.pro",
-      label: "Escribime al mail!",
+      label: "Escribime al mail",
     },
   ],
   pinnedDocuments: [],
