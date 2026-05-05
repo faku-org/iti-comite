@@ -4,11 +4,14 @@ on:
   push:
     branches: [main]
 
+concurrency:
+  group: deploy-iti-comite
+  cancel-in-progress: true
+
 jobs:
   deploy:
-    runs-on: [self-hosted, vps]
+    runs-on: self-hosted
+    timeout-minutes: 10
     steps:
-      - name: Run deploy script
-        run: |
-          chmod +x /var/www/iti-comite/deploy.sh
-          /var/www/iti-comite/deploy.sh
+      - name: Deploy
+        run: bash /home/hermes/deploy/iti-comite.sh
